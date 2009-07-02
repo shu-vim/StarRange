@@ -16,8 +16,8 @@
 "   Select a string in visual mode. Press * or # key.
 "
 
-vnoremap * :call <SID>StarRange__keepReg()<CR>gv"*y/\V<C-R>=escape(@*, '\')<CR><CR>:call <SID>StarRange__restoreReg()<CR>
-vnoremap # :call <SID>StarRange__keepReg()<CR>gv"*y?\V<C-R>=escape(@*, '\')<CR><CR>:call <SID>StarRange__restoreReg()<CR>
+vnoremap * :call <SID>StarRange__keepReg()<CR>gv"*y/\V<C-R>=substitute(escape(@*, '\'), '/', '\\/', 'g')<CR><CR>:call <SID>StarRange__restoreReg()<CR>
+vnoremap # :call <SID>StarRange__keepReg()<CR>gv"*y?\V<C-R>=substitute(escape(@*, '\'), '/', '\\/', 'g')<CR><CR>:call <SID>StarRange__restoreReg()<CR>
 
 let s:StarRange__reg = ''
 
