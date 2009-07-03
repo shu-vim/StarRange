@@ -16,8 +16,8 @@
 "   Select a string in visual mode. Press * or # key.
 "
 
-vnoremap * :call <SID>StarRange__keepReg()<CR>gv"*y/\V<C-R>=<SID>StarRange__substituteSpecialChars(@*)<CR><CR>:call <SID>StarRange__restoreReg()<CR>
-vnoremap # :call <SID>StarRange__keepReg()<CR>gv"*y?\V<C-R>=<SID>StarRange__substituteSpecialChars(@*)<CR><CR>:call <SID>StarRange__restoreReg()<CR>
+vnoremap * :call <SID>StarRange__keepReg()<CR>gv"*y/\V<C-R>=<SID>StarRange__substituteSpecialChars(@*)<CR><CR>:call <SID>StarRange__restoreReg()<CR>:echo<CR>
+vnoremap # :call <SID>StarRange__keepReg()<CR>gv"*y?\V<C-R>=<SID>StarRange__substituteSpecialChars(@*)<CR><CR>:call <SID>StarRange__restoreReg()<CR>:echo<CR>
 
 let s:StarRange__reg = ''
 
@@ -32,7 +32,7 @@ endfunction
 function! s:StarRange__substituteSpecialChars(str)
     let result = escape(a:str, '\')
     let result = substitute(result, '/', '\\/', 'g')
-    let result = substitute(result, '\n', '\\n', 'g')
+    let result = substitute(result, '\r\n\|\r\|\n', '\\n', 'g')
     return result
 endfunction
 
